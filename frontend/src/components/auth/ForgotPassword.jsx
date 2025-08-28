@@ -18,10 +18,9 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${API_PATH}/auth/forgot-password`,
-        { email }
-      );
+      const response = await axios.post(`${API_PATH}/auth/forgot-password`, {
+        email,
+      });
       if (response) {
         setReceivedCode("");
         setIsRequest(false);
@@ -76,10 +75,9 @@ const ForgotPassword = () => {
 
       if (typeof msg === "string" && msg.toLowerCase().includes("expired")) {
         try {
-          const reReq = await axios.post(
-            `${API_PATH}/auth/forgot-password`,
-            { email }
-          );
+          const reReq = await axios.post(`${API_PATH}/auth/forgot-password`, {
+            email,
+          });
           if (reReq) {
             setIsRequest(false);
             setError("Your OTP has expired. A new OTP was sent to your email.");
@@ -152,7 +150,10 @@ const ForgotPassword = () => {
             <form className="space-y-4" onSubmit={handleResetPassword}>
               {/* Enter OTP */}
               <div className="flex flex-col">
-                <label htmlFor="reset-code" className="text-sm font-medium mb-1">
+                <label
+                  htmlFor="reset-code"
+                  className="text-sm font-medium mb-1 text-gray-700"
+                >
                   Enter the OTP sent to your email
                 </label>
                 <input
@@ -160,13 +161,16 @@ const ForgotPassword = () => {
                   placeholder="e.g. 123456"
                   onChange={(e) => setOtp(e.target.value)}
                   required
-                  className="px-4 py-2 border border-red-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
 
               {/* Enter new Password */}
               <div className="flex flex-col">
-                <label htmlFor="password" className="text-sm font-medium mb-1">
+                <label
+                  htmlFor="password"
+                  className="text-sm font-medium mb-1 text-gray-700"
+                >
                   Enter your new password
                 </label>
                 <input
@@ -174,7 +178,7 @@ const ForgotPassword = () => {
                   placeholder="*********"
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
-                  className="px-4 py-2 border border-red-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
 
@@ -182,7 +186,7 @@ const ForgotPassword = () => {
               <div className="flex flex-col">
                 <label
                   htmlFor="confirm-password"
-                  className="text-sm font-medium mb-1"
+                  className="text-sm font-medium mb-1 text-gray-700"
                 >
                   Confirm password
                 </label>
@@ -191,9 +195,10 @@ const ForgotPassword = () => {
                   placeholder="********"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
-                  className="px-4 py-2 border border-red-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
+
               <button
                 type="submit"
                 className="w-full py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition duration-200"
@@ -209,4 +214,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-
